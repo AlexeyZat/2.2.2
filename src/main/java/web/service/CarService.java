@@ -1,28 +1,12 @@
 package web.service;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import web.dao.CarDao;
 import web.models.Car;
-
 import java.util.List;
 
-@Service
-public class CarService implements CarServiceimnt {
 
-    private final CarDao carDao;
+public interface CarService {
 
-    @Autowired
-    public CarService(CarDao carDao) {
-        this.carDao = carDao;
+    List<Car> getCars(int count);
 
-    }
-    @Override
-    public List<Car> getCars(int count) {
-        List<Car> cars = carDao.getCars();
-        if (count >= cars.size() || count <= 0) {
-            return cars;
-        }
-        return cars.subList(0,count);
-    }
 }
+
+// На счет второ интерфейса, я его случайно походу добавил, спешил

@@ -8,21 +8,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import web.models.Car;
 import web.service.CarService;
+import web.service.CarServiceimpl;
 
 import java.util.List;
 
 @Controller
 public class CarController {
 
-    private CarService carService;
+    private CarServiceimpl carServiceimpl;
     @Autowired
-    public CarController(CarService carService) {
-        this.carService = carService;
+    public CarController(CarServiceimpl carServiceimpl) {
+        this.carServiceimpl = carService;
     }
 
     @GetMapping("/cars")
     public String getCars(@RequestParam(name = "count", required = false, defaultValue = "5") int count, Model model) {
-        List<Car> cars = carService.getCars(count);
+        List<Car> cars = carServiceimpl.getCars(count);
         model.addAttribute("cars", cars);
         return "cars";
     }
